@@ -42,6 +42,10 @@ unstable_eigs = find(eig_aug >= 0);
 if isempty(unstable_eigs)
 	disp('System is asymtotically stable.')
 else
-	disp('System is UNSTABLE!')
+	error('System is UNSTABLE!')
 end
 
+% Determine SP parameter epsilon
+sort_eig = sort(eig_aug,'ascend');
+eig_ratio = sort_eig(2:end)./sort_eig(1:end-1);
+epsilon = min(eig_ratio);
