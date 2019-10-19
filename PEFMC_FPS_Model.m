@@ -34,3 +34,14 @@ A_aug = [A_PEM zeros(8,10); zeros(10,8) A_FPS];
 B_aug = [B_PEM zeros(8,1); B_FPS];
 C_aug = [C_PEM zeros(3,10); zeros(2,8) C_FPS];
 
+% Define a SP model by calculating eigenvalues of the system
+eig_aug = eig(A_aug);
+
+% Determine stability
+unstable_eigs = find(eig_aug >= 0);
+if isempty(unstable_eigs)
+	disp('System is asymtotically stable.')
+else
+	disp('System is UNSTABLE!')
+end
+
