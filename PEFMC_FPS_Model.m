@@ -38,14 +38,15 @@ C_aug = [C_PEM zeros(3,10); zeros(2,8) C_FPS];
 eig_aug = eig(A_aug);
 
 % Determine stability
-unstable_eigs = find(eig_aug >= 0);
+unstable_eigs = find(abs(eig_aug) >= 0);
 if isempty(unstable_eigs)
 	disp('System is asymtotically stable.')
 else
 	error('System is UNSTABLE!')
 end
 
-% Determine SP parameter epsilon
+% Determine SP parameter epsilon 
+% TODO: Add epsilon calculation if eigenvalues complex
 sort_eig = sort(eig_aug,'ascend');
 eig_ratio = sort_eig(2:end)./sort_eig(1:end-1);
 epsilon = min(eig_ratio);
