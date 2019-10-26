@@ -1,6 +1,5 @@
+function [augSys, augSP ,eigAug] = PEMFC_FPS_Model
 % Model definition for PEMFC-FPS system.
-
-clear; clc
 
 % PEMFC state-space matrices
 A_PEM = [-6.3091 0 -10.954 0 83.7446 0 0 24.0587;...
@@ -34,14 +33,19 @@ A_aug = [A_PEM zeros(8,10); zeros(10,8) A_FPS];
 B_aug = [B_PEM zeros(8,1); B_FPS];
 C_aug = [C_PEM zeros(3,10); zeros(2,8) C_FPS];
 
+% Create augmented system struct
+augSys.A_aug = A_aug;
+augSys.B_aug = B_aug;
+augSys.C_aug = C_aug;
+
 %% Create a SP model from the original PEMFC-FPS model
 % Eigenvalue separation used to define the time-scales
 
 % Calculate eigenvalues of the system
-eig_aug = eig(A_aug);
+eigAug = eig(A_aug);
 
 % Determine stability
-unstable_eigs = find(abs(eig_aug) >= 0);
+unstable_eigs = find(abs(eigAug) >= 0);
 if isempty(unstable_eigs)
 	disp('System is asymtotically stable.')
 else
@@ -50,7 +54,7 @@ end
 
 % Determine SP parameter epsilon 
 % TODO: Add epsilon calculation if eigenvalues complex
-sort_eig = sort(eig_aug,'ascend');
+sort_eig = sort(eigAug,'ascend');
 eig_ratio = sort_eig(2:end)./sort_eig(1:end-1);
 epsilon = min(eig_ratio);
 sf_index = find(eig_ratio == min(eig_ratio));
@@ -72,3 +76,9 @@ C2_SP = C_aug(:,sf_index+1:end);
 A_SP = [A1_SP A2_SP; A3_SP/epsilon A4_SP/epsilon];
 B_SP = [B1_SP; B2_SP/epsilon];
 C_SP = [C1_SP C2_SP];  % Same as C but added for consistency
+
+% Create SP model struct
+augSP.A_SP = A_SP;
+augSP.B_SP = B_SP;
+augSP.C_SP = C_SP;
+
