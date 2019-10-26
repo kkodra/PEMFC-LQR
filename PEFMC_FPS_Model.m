@@ -34,7 +34,10 @@ A_aug = [A_PEM zeros(8,10); zeros(10,8) A_FPS];
 B_aug = [B_PEM zeros(8,1); B_FPS];
 C_aug = [C_PEM zeros(3,10); zeros(2,8) C_FPS];
 
-% Define a SP model by calculating eigenvalues of the system
+%% Create a SP model from the original PEMFC-FPS model
+% Eigenvalue separation used to define the time-scales
+
+% Calculate eigenvalues of the system
 eig_aug = eig(A_aug);
 
 % Determine stability
@@ -68,4 +71,4 @@ C2_SP = C_aug(:,sf_index+1:end);
 
 A_SP = [A1_SP A2_SP; A3_SP/epsilon A4_SP/epsilon];
 B_SP = [B1_SP; B2_SP/epsilon];
-C_SP = [C1_SP C2_SP];  % Same as C but added to be consistent
+C_SP = [C1_SP C2_SP];  % Same as C but added for consistency
