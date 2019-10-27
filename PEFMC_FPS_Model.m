@@ -1,4 +1,4 @@
-function [augSys, augSP ,eigAug, epsilon] = PEMFC_FPS_Model
+function [augSys, augSP ,eigAug, epsilon, sf_index] = PEMFC_FPS_Model
 % Model definition for PEMFC-FPS system.
 
 % PEMFC state-space matrices
