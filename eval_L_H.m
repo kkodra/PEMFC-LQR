@@ -1,3 +1,4 @@
+function [L,H] = eval_L_H(A1,A2,A3,A4,epsilon,method)
 % Function evaluates matrices L and H of the Chang transformation using:
 %           - Recursive method: 
 %              Ref: Gajic and Grodt, "The recursive reduced-order numerical solution of the singularly perturbed matrix differential equation," IEEE TAC, 1988.
@@ -6,9 +7,8 @@
 % Syntax: [L,H] = eval_L_H(A1,A2,A3,A4,epsilon,method)
 % User can select 'recursive' or 'eigenvector' for method.
 
-function [L,H] = eval_L_H(A1,A2,A3,A4,epsilon,method)
-
-if strcmpi(method, 'recursive') == 1
+switch method
+case 'recursive'
     Li = (A4)\A3;
     for j = 1:1000
         D1 = A4 +epsilon*Li*A2;
@@ -21,10 +21,11 @@ if strcmpi(method, 'recursive') == 1
     end
     L = Lnew;
     H = Hnew;
-elseif strcmpi(method, 'eigenvector') == 1
+case 'eigenvector'
     R = [-epsilon*A1 epsilon*A2; A3 -A4];
     [V,~] = eig(R);
-    
+otherwise
+    error('Method options are \'recursive\' and \'eigenvector\'.');
     M = V;
     i = 1;
     Mnew = zeros(length(M));
