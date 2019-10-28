@@ -24,8 +24,6 @@ case 'recursive'
 case 'eigenvector'
     R = [-epsilon*A1 epsilon*A2; A3 -A4];
     [V,~] = eig(R);
-otherwise
-    error('Method options are \'recursive\' and \'eigenvector\'.');
     M = V;
     i = 1;
     Mnew = zeros(length(M));
@@ -56,6 +54,8 @@ otherwise
     Csyl = -A2;
 
     H = lyapkr(Asyl,Bsyl,Csyl);
-end
-end
 
+otherwise
+    error('Method options are \'recursive\' and \'eigenvector\'.');
+end
+end
