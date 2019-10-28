@@ -23,5 +23,20 @@ end
 % Create a SP model using developed algorithm
 % TODO
 
-% Controller design
-% TODO
+%% Controller design
+% Controllability matrices 
+SP_cont = ctrb(A,B);
+slow_cont = ctrb(slow_sys.As, slow_sys.Bs);
+fast_cont = ctrb(slow_sys.Af, slow_sys.Bf);
+
+% LQR for original SP model
+if rank(SP_cont) < rank(A)
+	error('Controllability matrix is singular.');
+end
+
+% LQR for slow and fast models
+if rank(slow_cont) < rank (slow_sys.As)
+	error('Controllability matrix of the slow subsystem is singular.');
+elseif rank(fast_cont) < rank(fast_sys.Af)
+	error('Controllability matrix of the fast subsystem is singular.');
+end

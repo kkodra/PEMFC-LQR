@@ -34,9 +34,9 @@ B_aug = [B_PEM zeros(8,1); B_FPS];
 C_aug = [C_PEM zeros(3,10); zeros(2,8) C_FPS];
 
 % Create augmented system struct
-augSys.A_aug = A_aug;
-augSys.B_aug = B_aug;
-augSys.C_aug = C_aug;
+augSys.A = A_aug;
+augSys.B = B_aug;
+augSys.C = C_aug;
 
 %% Create a SP model from the original PEMFC-FPS model
 % Eigenvalue separation used to define the time-scales
@@ -78,7 +78,7 @@ B_SP = [B1_SP; B2_SP/epsilon];
 C_SP = [C1_SP C2_SP];  % Same as C but added for consistency
 
 % Create SP model struct
-augSP.A_SP = A_SP;
-augSP.B_SP = B_SP;
-augSP.C_SP = C_SP;
+augSP.A = A_SP;
+augSP.B = B_SP;
+augSP.C = C_SP;
 
