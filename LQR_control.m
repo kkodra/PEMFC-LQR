@@ -1,4 +1,4 @@
-function [K, sys_FB] = LQR_control(Q, R, sys)
+function [K, sys_FB, y, x] = LQR_control(Q, R, sys, r, t)
 % LQR controller design function
 
 A = sys.A;
@@ -16,5 +16,10 @@ sys_FB.A = A_fb;
 sys_FB.B = B_fb;
 sys_FB.C = C_fb;
 sys_FB.D = D_fb;
+
+sys_ss = ss(A_fb, B_fb, C_fb, D_fb);
+
+[y,~,x] = lsim[sys_ss, r, t);
+
 
 
