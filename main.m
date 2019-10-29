@@ -42,4 +42,6 @@ elseif rank(fast_cont) < rank(fast_sys.Af)
 end
 
 % LQR controller
+Q = eye(size(sys.A));
+
 [K, sys_FB, y, x] = LQR_control(Q, R, sys, r, t)
