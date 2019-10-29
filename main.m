@@ -40,3 +40,6 @@ if rank(slow_cont) < rank (slow_sys.As)
 elseif rank(fast_cont) < rank(fast_sys.Af)
 	error('Controllability matrix of the fast subsystem is singular.');
 end
+
+% LQR controller
+[K, sys_FB, y, x] = LQR_control(Q, R, sys, r, t)
