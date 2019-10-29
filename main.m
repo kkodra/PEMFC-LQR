@@ -41,7 +41,12 @@ elseif rank(fast_cont) < rank(fast_sys.Af)
 	error('Controllability matrix of the fast subsystem is singular.');
 end
 
-% LQR controller
-Q = eye(size(sys.A));
+% Define time and input functions
+t = 0:0.01:10;
+r = ones(size(t));
 
-[K, sys_FB, y, x] = LQR_control(Q, R, sys, r, t)
+% LQR controller for overall augmented system
+Q_aug = sys_aug.C'*sys_aug.C;
+R_aug = 1;
+
+[K_aug, sys_FB_aug, y_aug, x_aug] = LQR_control(Q_aug, R_aug, sys_aug, r, t)
