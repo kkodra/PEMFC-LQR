@@ -1,4 +1,4 @@
-function [Tordered,U] = OrderedSchur(A)
+function [Tordered,U] = ordered_Schur(A)
 %Calculate ordered Schur form of a real non-symmetric matrix.
 %   Ref: L. K. Balyan, "An Algorithm of Ordered Schur
 %   Factorization for Real Nonsymmetric Matrix," World Aca. of Sci., 2010.
