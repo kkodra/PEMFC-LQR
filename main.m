@@ -55,3 +55,9 @@ Q_slow = slow_sys.C'*slow_sys.C;
 R_slow = 1;
 
 [K_slow, sys_FB_slow, y_slow, x_slow] = LQR_control(Q_slow, R_slow, sys_slow, r, t)
+
+% LQR controller for fast subsystem
+Q_fast = fast_sys.C'*fast_sys.C;
+R_fast = 1;
+
+[K_fast, sys_FB_fast, y_fast, x_fast] = LQR_control(Q_fast, R_fast, sys_fast, r, t)
