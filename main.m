@@ -61,3 +61,6 @@ Q_fast = fast_sys.C'*fast_sys.C;
 R_fast = 1;
 
 [K_fast, sys_FB_fast, y_fast, x_fast] = LQR_control(Q_fast, R_fast, sys_fast, r, t)
+
+% TODO: Controller for Schur-decomposed system
+
