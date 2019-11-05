@@ -1,5 +1,6 @@
-function [augSys, augSP ,eigAug, epsilon, sf_index] = PEMFC_FPS_Model
-% Model definition for PEMFC-FPS system.
+function [augSys, augSP ,eigAug, epsilon, sf_index] = PEMFC_FPS_Model(slow_ind)
+% Model definition for PEMFC-FPS system. Input argument 'slow_ind' represent order of the slow sub-system
+% If no input is provided, then order is determined by finding the smallest SP parameter epsilon. Latter method could be tricky.
 
 % PEMFC state-space matrices
 A_PEM = [-6.3091 0 -10.954 0 83.7446 0 0 24.0587;...
@@ -14,7 +15,7 @@ B_PEM = [0 0 0 3.9467 0 0 0 0 ]';
 C_PEM = [0 0 0 5.0666 -116.45 0 0 0; 0 0 0 0 1 0 0 0; 12.9699 10.3235 -0.5693 0 0 0 0 0];
 
 % FPS state-space matrices
-A_FPS = [-0.074 0 0 0 0 0 -3.53 1.0748 0 1^{-6};...
+A_FPS = [-0.074 0 0 0 0 0 -3.53 1.0748 0 1e-6;...
 		0 -1.468 -25.3 0 0 0 0 0 2.5582 13.911;...
 		0 0 -156 0 0 0 0 0 0 33.586;...
 		0 0 0 -124.5 212.63 0 112.69 112.69 0 0;...
@@ -45,7 +46,7 @@ augSys.C = C_aug;
 eigAug = eig(A_aug);
 
 % Determine stability
-unstable_eigs = find(abs(eigAug) >= 0);
+unstable_eigs = find(real(eigAug) >= 0,1);
 if isempty(unstable_eigs)
 	disp('System is asymtotically stable.')
 else
@@ -54,10 +55,16 @@ end
 
 % Determine SP parameter epsilon 
 % TODO: Add epsilon calculation if eigenvalues complex
-sort_eig = sort(eigAug,'ascend');
-eig_ratio = sort_eig(2:end)./sort_eig(1:end-1);
+sort_eig = real(sort(eigAug,'ascend'));
+eig_ratio = sort_eig(1:end-1)./sort_eig(2:end);
 epsilon = min(eig_ratio);
-sf_index = find(eig_ratio == min(eig_ratio));
+
+% Determine slow sub-system order if no input is provided
+if nargin < 1
+	sf_index = find(eig_ratio == min(eig_ratio));
+else
+	sf_index = slow_ind;
+end
 
 %% Form Augmented SP model
 % Define sub-matrices
