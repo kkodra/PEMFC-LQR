@@ -8,9 +8,9 @@ clc
 [sys_aug, sys_SP, sys_eig, epsilon, dim] = PEMFC_FPS_Model;
 
 % SP system matrices
-A = sys_SP.A_SP;
-B = sys_SP.B_SP;
-C = sys_SP.C_SP;
+A = sys_SP.A;
+B = sys_SP.B;
+C = sys_SP.C;
 
 % Create a decoupled model using Chang
 [slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A,B,C,dim,epsilon)

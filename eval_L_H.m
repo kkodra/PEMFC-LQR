@@ -56,6 +56,6 @@ case 'eigenvector'
     H = lyapkr(Asyl,Bsyl,Csyl);
 
 otherwise
-    error('Method options are \'recursive\' and \'eigenvector\'.');
+    error('Method options are ''recursive'' and ''eigenvector''.');
 end
 end
