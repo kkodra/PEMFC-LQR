@@ -7,7 +7,7 @@ A3 = A(dim+1:end,1:dim);
 A4 = A(dim+1:end,dim+1:end);
 
 B1 = B(1:dim,:);
-B2 = B(dim+1,:);
+B2 = B(dim+1:end,:);
 
 C1 = C(:,1:dim);
 C2 = C(:,dim+1:end);
