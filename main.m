@@ -1,5 +1,4 @@
 % Main script to run algorithms
-% (Work in progress)
 
 clear
 clc
