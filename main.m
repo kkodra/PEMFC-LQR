@@ -61,5 +61,13 @@ R_fast = 1;
 
 [K_fast, sys_FB_fast, y_fast, x_fast] = LQR_control(Q_fast, R_fast, sys_fast, r, t)
 
+% Plot results. TODO check & complete
+% Slow subsystem state
+plot(t,x_slow(1,:));
+
+% Fast subsystem state
+plot(t,x_fast(1,:));
+
 % TODO: Controller for Schur-decomposed system
+
 
