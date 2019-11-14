@@ -22,6 +22,7 @@ end
 % Create a SP model using developed algorithm
 % TODO
 % Add Schur decomposed model
+[Tordered,U] = ordered_Schur(A)
 
 %% Controller design
 % Controllability matrices 
