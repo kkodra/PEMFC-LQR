@@ -21,6 +21,7 @@ end
 
 % Create a SP model using developed algorithm
 % TODO
+% Add Schur decomposed model
 
 %% Controller design
 % Controllability matrices 
