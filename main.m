@@ -74,5 +74,4 @@ plot(t,x_fast(1,:));
 xlabel('Time (s)'); ylabel('States')
 
 % TODO: Controller for Schur-decomposed system
-
-
+[Tordered,U] = ordered_Schur(A)
