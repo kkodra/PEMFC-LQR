@@ -83,3 +83,9 @@ C_schur = C*Tordered;
 % Get slow and fast subsystems
 A_schur_slow = A_schur(1:dim,1:dim);
 A_schur_fast = A_schur(dim+1:end,dim+1:end);
+
+B_schur_slow = B_schur(1:dim,:);
+B_schur_fast = B_schur(dim+1:end,:);
+
+C_schur_slow = C_schur(:,1:dim);
+C_schur_slow = C_schur(:,dim+1:end);
