@@ -75,3 +75,6 @@ xlabel('Time (s)'); ylabel('States')
 
 % TODO: Controller for Schur-decomposed system
 [Tordered,U] = ordered_Schur(A)
+A_schur = U;
+B_schur = Tordered*B;
+C_schur = C*Tordered;
