@@ -73,8 +73,13 @@ xlabel('Time (s)'); ylabel('States')
 plot(t,x_fast(1,:));
 xlabel('Time (s)'); ylabel('States')
 
-% TODO: Controller for Schur-decomposed system
+%% Controller for Schur-decomposed system
+% Obtain Schur decomposed system
 [Tordered,U] = ordered_Schur(A)
 A_schur = U;
 B_schur = Tordered*B;
 C_schur = C*Tordered;
+
+% Get slow and fast subsystems
+A_schur_slow = A_schur(1:dim,1:dim);
+A_schur_fast = A_schur(dim+1:end,dim+1:end);
