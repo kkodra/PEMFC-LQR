@@ -19,7 +19,7 @@ sys_FB.D = D_fb;
 
 sys_ss = ss(A_fb, B_fb, C_fb, D_fb);
 
-[y,~,x] = lsim[sys_ss, r, t);
+[y,~,x] = lsim(sys_ss, r, t);
 
 
 
