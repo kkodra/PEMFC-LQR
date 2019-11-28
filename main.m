@@ -11,14 +11,6 @@ A = sys_SP.A;
 B = sys_SP.B;
 C = sys_SP.C;
 
-% Create a decoupled model using Chang
-[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A,B,C,dim,epsilon)
-
-% Ensure L and H have been solved correctly. Set a threshold
-if norm(LH_test.Test1) > 10e-6 || norm(LH_test.Test2) > 10e-6 
-	error('L or H are not correct.')
-end
-
 % Create a SP model using developed algorithm
 % TODO
 % Add Schur decomposed model
@@ -27,7 +19,12 @@ E = ordeig(T_schur);
 [T_schur_ordered,U_schur_ordered] = orderschur(T_schur,U_schur,1:length(A_aug));
 
 % Create a decoupled model using Chang
-[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A,B,C,dim,epsilon)
+[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(T_schur_ordered,U_schur_ordered*B_aug,C/U_schur_ordered,dim,epsilon)
+
+% Ensure L and H have been solved correctly. Set a threshold
+if norm(LH_test.Test1) > 10e-6 || norm(LH_test.Test2) > 10e-6
+        error('L or H are not correct.')
+end
 
 
 %% Controller design
