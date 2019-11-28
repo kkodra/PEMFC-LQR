@@ -11,6 +11,13 @@ A = sys_SP.A;
 B = sys_SP.B;
 C = sys_SP.C;
 
+% Plot magnitude of eigenvalues of the system
+figure
+bar(sort(abs(sys_eig)))w grid on
+xlabel('State','interpreter','latex');
+ylabel('$|\lambda_i|$','interpreter','latex')
+
+
 % Create a SP model using developed algorithm
 % TODO
 % Add Schur decomposed model
