@@ -11,7 +11,7 @@ switch method
 case 'recursive'
     Li = (A4)\A3;
     for j = 1:1000
-        D1 = A4 +epsilon*Li*A2;
+        D1 = A4 + epsilon*Li*A2;
         D2 = -epsilon*(A1 - A2*Li);
         Qi = A3 +epsilon*Li*A2*Li;
         Li_1 = lyap(D1,D2,-Qi);
