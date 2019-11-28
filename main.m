@@ -4,7 +4,7 @@ clear
 clc
 
 % Import model
-[sys_aug, sys_SP, sys_eig, epsilon, dim] = PEMFC_FPS_Model;
+[sys_aug, sys_eig] = PEMFC_FPS_Model;
 
 % SP system matrices
 A = sys_SP.A;
