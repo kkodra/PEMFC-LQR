@@ -22,7 +22,13 @@ end
 % Create a SP model using developed algorithm
 % TODO
 % Add Schur decomposed model
-[Tordered,U] = ordered_Schur(A)
+[T_schur,U_schur] = schur(A_aug)
+E = ordeig(T_schur);
+[T_schur_ordered,U_schur_ordered] = orderschur(T_schur,U_schur,1:length(A_aug));
+
+% Create a decoupled model using Chang
+[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A,B,C,dim,epsilon)
+
 
 %% Controller design
 % Controllability matrices 
