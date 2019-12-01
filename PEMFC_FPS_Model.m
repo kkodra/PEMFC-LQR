@@ -53,39 +53,4 @@ else
 	error('System is UNSTABLE!')
 end
 
-% Determine SP parameter epsilon 
-% TODO: Add epsilon calculation if eigenvalues complex
-%sort_eig = real(sort(eigAug,'ascend'));
-%eig_ratio = sort_eig(1:end-1)./sort_eig(2:end);
-%epsilon = min(eig_ratio);
-
-% Determine slow sub-system order if no input is provided
-%if nargin < 1
-%	sf_index = find(eig_ratio == min(eig_ratio));
-%else
-%	sf_index = slow_ind;
-%end
-
-%% Form Augmented SP model
-% Define sub-matrices
-%A1_SP = A_aug(1:sf_index,1:sf_index);
-%A2_SP = A_aug(1:sf_index,sf_index+1:end);
-%A3_SP = A_aug(sf_index+1:end,1:sf_index);
-%A4_SP = A_aug(sf_index+1:end,sf_index+1:end);
-
-%B1_SP = B_aug(1:sf_index,:);
-%B2_SP = B_aug(sf_index+1:end,:);
-
-%C1_SP = C_aug(:,1:sf_index);
-%C2_SP = C_aug(:,sf_index+1:end);
-
-
-%A_SP = [A1_SP A2_SP; A3_SP/epsilon A4_SP/epsilon];
-%B_SP = [B1_SP; B2_SP/epsilon];
-%C_SP = [C1_SP C2_SP];  % Same as C but added for consistency
-
-% Create SP model struct
-%augSP.A = A_SP;
-%augSP.B = B_SP;
-%augSP.C = C_SP;
 
