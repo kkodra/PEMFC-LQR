@@ -7,6 +7,10 @@ function [L,H] = eval_L_H(A1,A2,A3,A4,epsilon,method)
 % Syntax: [L,H] = eval_L_H(A1,A2,A3,A4,epsilon,method)
 % User can select 'recursive' or 'eigenvector' for method.
 
+if nargin < 6
+	error('Number of input argument is not correct.')
+end
+
 switch method
 case 'recursive'
     Li = (A4)\A3;
