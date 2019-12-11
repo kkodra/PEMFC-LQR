@@ -1,6 +1,10 @@
 function [K, sys_FB, y, x] = LQR_control(Q, R, sys, r, t)
 % LQR controller design function
 
+if nargin < 5
+	error('Number of arguments is less than accepted.');
+end
+
 A = sys.A;
 B = sys.B;
 C = sys.C;
