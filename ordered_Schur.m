@@ -7,6 +7,10 @@ E = ordeig(A_schur);
 E_aug = [abs(E) [1:18]'];
 E_aug_sort = sortrows(E_aug,1);
 
+% ============================
+% Add while loop to automate...
+% ============================
+
 select = zeros(1,18);
 select(13:14) = 1;
 
