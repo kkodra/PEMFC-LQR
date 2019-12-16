@@ -22,8 +22,12 @@ ylabel('$|\lambda_i|$','interpreter','latex')
 % Add Schur decomposed model
 [T_ordered, ordSys] = ordered_Schur(augSys)
 
+A_schur_ord = ordSys.A;
+B_schur_ord = ordSys.B;
+C_schur_ord = ordSys.C;
+
 % Create a decoupled model using Chang
-[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(T_schur_ordered,U_schur_ordered*B_aug,C/U_schur_ordered,dim,epsilon)
+[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A_schur_ord,B_schur_ord,C_schur_ord,dim,epsilon)
 
 % Ensure L and H have been solved correctly. Set a threshold
 if norm(LH_test.Test1) > 10e-6 || norm(LH_test.Test2) > 10e-6
