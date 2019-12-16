@@ -19,9 +19,8 @@ ylabel('$|\lambda_i|$','interpreter','latex')
 
 
 % Create a SP model using developed algorithm
-% TODO
 % Add Schur decomposed model
-[T_ordered, A_schur, B_schur, C_schur] = ordered_Schur(augSys)
+[T_ordered, ordSys] = ordered_Schur(augSys)
 
 % Create a decoupled model using Chang
 [slow_sys, fast_sys, LH_test, L, H] = decouple_sys(T_schur_ordered,U_schur_ordered*B_aug,C/U_schur_ordered,dim,epsilon)
