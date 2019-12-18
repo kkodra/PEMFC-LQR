@@ -1,5 +1,7 @@
 function [T_schur_ord,ordSys] = ordered_Schur(augSys)
 % Function evaluates the ordered Schur realization of the input state space model
+% INPUT: 1. State space struct
+% OUTPUT: 1. Ordered Schur transformation matrix 2. Ordered Schur transformed state space model
 
 sysSize = length(augSys.A);
 
