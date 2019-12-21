@@ -82,11 +82,12 @@ R_fast = 1;
 % Plot results. TODO check & complete
 % Slow subsystem state
 figure
-plot(t,x_slow(1,:));
+plot(t,x_slow(1,:));grid on
 xlabel('Time (s)'); ylabel('States')
 
 % Fast subsystem state
-plot(t,x_fast(1,:));
+figure
+plot(t,x_fast(1,:));grid on
 xlabel('Time (s)'); ylabel('States')
 
 %% Controller for Schur-decomposed system
