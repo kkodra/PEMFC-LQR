@@ -4,8 +4,10 @@ function [L,H] = eval_L_H(A1,A2,A3,A4,epsilon,method)
 %              Ref: Gajic and Grodt, "The recursive reduced-order numerical solution of the singularly perturbed matrix differential equation," IEEE TAC, 1988.
 %           - Eigenvectors method:
 %              Ref: Kecman, Bingulac, and Gajic, "Eigenvector approach for order-reduction of singularly perturbed LQ optimal control problem," Automatica, 1999.
-% Syntax: [L,H] = eval_L_H(A1,A2,A3,A4,epsilon,method)
-% User can select 'recursive' or 'eigenvector' for method.
+% INPUT: Argument 1 thru 4 are partitioned matrices of the system matrix
+%        Argument 5 is the value of SP parameter epsilon
+%        Argument 6 is a string representing solution method ('recursive' or 'eigenvector')
+% OUTPUT: L and H
 
 if nargin < 6
 	error('Number of input argument is not correct.')
