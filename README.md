@@ -1,7 +1,8 @@
-# PEMFC-FPS LQR 
-LQR controller for a PEMFC-FPS augmented model. *(Work in Progress)*
+# Singular perturbation modeling and LQ control of PEMFC-FPS augmented model
+Main features of the algorithms:
 
-1. A SP PEMFC-FPS is derived
-2. Efficient decoupling of the SP using using algorithm based on Schur decomposition 
-3. Controller design of the augmented SP system
-4. Controller design of slow and fast SP systems
+1. An augmented model has been created from a PEM fuel cell (PEMFC) and fuel processing system (FPS). 
+2. Said model has then been converted into its singularly perturbed (SP) equivalent.
+3. Efficient algorithm based on the Schur transformation developed to obtain SP form
+4. Sample LQR controllers designed for individual sub-systems of the SP PEMFC-FPS augmented model. *(Work in Progress)*
+
