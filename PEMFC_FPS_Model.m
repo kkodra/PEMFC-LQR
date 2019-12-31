@@ -1,6 +1,5 @@
 function [augSys,eigAug] = PEMFC_FPS_Model
-% Model definition for PEMFC-FPS system. Input argument 'slow_ind' represent order of the slow sub-system
-% If no input is provided, then order is determined by finding the smallest SP parameter epsilon. Latter method could be tricky.
+% Model definition for PEMFC-FPS system. 
 
 % PEMFC state-space matrices
 A_PEM = [-6.3091 0 -10.954 0 83.7446 0 0 24.0587;...
