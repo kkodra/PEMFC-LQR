@@ -1,5 +1,7 @@
 function [augSys,eigAug] = PEMFC_FPS_Model
-% Model definition for PEMFC-FPS system. 
+% Model definition for PEMFC-FPS system.
+% OUTPUT: augSys -> Augmented PEMFC-FPS state-space model
+%         eigAug -> Eigenvalues of the augmented model 
 
 % PEMFC state-space matrices
 A_PEM = [-6.3091 0 -10.954 0 83.7446 0 0 24.0587;...
