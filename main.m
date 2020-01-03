@@ -28,6 +28,11 @@ C_schur_ord = ordSys.C;
 
 % TODO: Maybe a loop to get N different time-scales that the system has
 % See algorithm in paper
+% COMPLETE THIS!
+num_TS = 3;
+for i = 1:num_TS-1
+	[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A_schur_ord,B_schur_ord,C_schur_ord,dim,epsilon)
+end
 
 % Create a decoupled model using Chang
 [slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A_schur_ord,B_schur_ord,C_schur_ord,dim,epsilon)
