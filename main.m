@@ -49,13 +49,6 @@ SP_cont = ctrb(A,B);
 slow_cont = ctrb(slow_sys.A, slow_sys.B);
 fast_cont = ctrb(fast_sys.A, fast_sys.B);
 
-% LQR for original SP model
-if rank(SP_cont) < rank(A)
-	disp('Controllability matrix is singular.');
-	
-	%% Add contition for stabilizability
-end
-
 % LQR for slow and fast models
 if rank(slow_cont) < rank (slow_sys.As)
 	error('Controllability matrix of the slow subsystem is singular.');
