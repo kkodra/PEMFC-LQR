@@ -39,7 +39,7 @@ fast_sys.A = Af;
 fast_sys.B = Bf;
 fast_sys.C = Cf;
 
-% L and H test (see if they are correct; Test1 and TEst2 should evaluate to 0)
+% L and H test (see if they are correct; Test1 and Test2 should evaluate to 0)
 LH_test.Test1 = Test1;
 LH_test.Test2 = Test2;
 
