@@ -1,5 +1,5 @@
 % Main script to run algorithms
-
+% Running will generate the SP model and also corresponding plots of the LQ controller
 clear
 clc
 
