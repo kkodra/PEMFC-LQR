@@ -5,6 +5,9 @@ function [slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A,B,C,dim,epsilon)
 
 % dim should come in as a vector with sizes of sub-systems
 
+% Number of time-scales available
+num_ts = numel(dim)
+
 % From bottom to top [1 4]
 A1 = A(1:dim,1:dim);
 A2 = A(1:dim,dim+1:end);
