@@ -34,9 +34,6 @@ for i = 1:num_TS-1
 	[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A_schur_ord,B_schur_ord,C_schur_ord,dim,epsilon)
 end
 
-% Create a decoupled model using Chang
-[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A_schur_ord,B_schur_ord,C_schur_ord,dim,epsilon)
-
 % Ensure L and H have been solved correctly. Set a threshold
 if norm(LH_test.Test1) > 10e-6 || norm(LH_test.Test2) > 10e-6
         error('L or H are not correct.')

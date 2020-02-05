@@ -3,11 +3,6 @@ function [slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A,B,C,dim,epsilon)
 % TODO: Create loop. Run len(dim) times and create subsystems
 % NEEDS modification to agree with algorithm in paper
 
-% dim should come in as a vector with sizes of sub-systems
-
-% Number of time-scales available
-num_ts = numel(dim)
-
 % From bottom to top [1 4]
 A1 = A(1:dim,1:dim);
 A2 = A(1:dim,dim+1:end);
