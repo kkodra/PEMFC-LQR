@@ -46,12 +46,3 @@ augSys.C = C_aug;
 % Calculate eigenvalues of the system
 eigAug = eig(A_aug);
 
-% Determine stability
-unstable_eigs = find(real(eigAug) >= 0,1);
-if isempty(unstable_eigs)
-	disp('System is asymtotically stable.')
-else
-	error('System is UNSTABLE!')
-end
-
-
