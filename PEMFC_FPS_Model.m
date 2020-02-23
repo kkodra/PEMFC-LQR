@@ -1,4 +1,4 @@
-function [augSys,eigAug] = PEMFC_FPS_Model
+function [augSys,eig_Aug,epsilon,TS_size] = PEMFC_FPS_Model
 % Model definition for PEMFC-FPS system.
 % OUTPUT: augSys -> Augmented PEMFC-FPS state-space model
 %         eigAug -> Eigenvalues of the augmented model 
@@ -43,5 +43,18 @@ augSys.C = C_aug;
 %% Eigenvalue separation used to define the time-scales
 
 % Calculate eigenvalues of the system
-eigAug = eig(A_aug);
+eig_Aug = eig(A_aug);
+abs_Eig = abs(eig_Aug);
+
+% Sort magnitude of eigenvalues
+abs_EigSort = sort(abs_Eig);
+
+% Evaluate epsilon based on separation (arbitrary)
+epsilon.eps1 = abs_EigSort(9)/abs_EigSort(10);
+epsilon.eps2 = abs_EigSort(9)/abs_EigSort(16);
+
+% Define time-scale sizes vector
+TS_size = [9, 6, 3];
+
+
 
