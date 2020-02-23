@@ -40,8 +40,7 @@ augSys.A = A_aug;
 augSys.B = B_aug;
 augSys.C = C_aug;
 
-%% Create a SP model from the original PEMFC-FPS model
-% Eigenvalue separation used to define the time-scales
+%% Eigenvalue separation used to define the time-scales
 
 % Calculate eigenvalues of the system
 eigAug = eig(A_aug);

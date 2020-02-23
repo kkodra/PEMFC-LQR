@@ -6,11 +6,6 @@ clc
 % Import model
 [sys_aug, sys_eig] = PEMFC_FPS_Model;
 
-% SP system matrices
-A = sys_SP.A;
-B = sys_SP.B;
-C = sys_SP.C;
-
 % Plot magnitude of eigenvalues of the system
 figure
 bar(sort(abs(sys_eig)))w grid on
