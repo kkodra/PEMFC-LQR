@@ -65,3 +65,8 @@ otherwise
     error('Method options are ''recursive'' and ''eigenvector''.');
 end
 end
+
+% Ensure L and H have been solved correctly. Set a threshold
+if norm(LH_test.Test1) > 10e-7 || norm(LH_test.Test2) > 10e-7
+        error('L or H have not been solved correctly.')
+end
