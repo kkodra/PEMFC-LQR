@@ -31,9 +31,9 @@ end
 
 % PUT THIS IN 'decouple_sys'
 % Ensure L and H have been solved correctly. Set a threshold
-if norm(LH_test.Test1) > 10e-6 || norm(LH_test.Test2) > 10e-6
-        error('L or H are not correct.')
-end
+%if norm(LH_test.Test1) > 10e-6 || norm(LH_test.Test2) > 10e-6
+%        error('L or H are not correct.')
+%end
 
 
 %% Controller design
