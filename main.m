@@ -8,7 +8,7 @@ clc
 
 % Plot magnitude of eigenvalues of the system
 figure
-bar(sort(abs(sys_eig)))w grid on
+bar(sort(abs(sys_eig))); grid on
 xlabel('State','interpreter','latex');
 ylabel('$|\lambda_i|$','interpreter','latex')
 
