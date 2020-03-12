@@ -1,5 +1,6 @@
 function [K, sys_FB, y, x] = LQR_control(Q, R, sys, r, t)
 % LQR controller design function
+% Matrices Q and R are defined in main.m. r is the input (step has been used in this case). t is the time vector.
 
 if nargin < 5
 	error('Number of arguments is less than accepted.');
