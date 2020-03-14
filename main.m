@@ -46,7 +46,7 @@ fast_cont = ctrb(fast_sys.A, fast_sys.B);
 % LQR for slow and fast models
 if rank(slow_cont) < rank(slow_sys.As)
 	fprintf('Controllability matrix of the slow subsystem is singular.\n');
-	if rank(slow_cont)<rank(slow_sys.As) & sys_Eig<0
+	if sys_Eig<0
 		fprintf('System is not controllable but is stabilizable.\n')
         end  
 elseif rank(fast_cont) < rank(fast_sys.Af)
