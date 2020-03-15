@@ -12,8 +12,7 @@ bar(sort(abs(sys_eig))); grid on
 xlabel('State','interpreter','latex');
 ylabel('$|\lambda_i|$','interpreter','latex')
 
-
-% Create a SP model using developed algorithm
+% Step 1: Create ordered Schur SP model
 % Add Schur decomposed model
 [T_ordered, ordSys] = ordered_Schur(augSys)
 
