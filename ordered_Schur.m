@@ -5,7 +5,6 @@ function [T_schur_ord,ordSys] = ordered_Schur(augSys)
 %         2. Ordered Schur transformed state space model
 
 sysSize = length(augSys.A);
-
 [T_schur,A_schur_ord] = schur(augSys.A);
 
 E = ordeig(A_schur_ord);
