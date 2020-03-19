@@ -2,6 +2,7 @@
 % Running will generate the SP model and also corresponding plots of the LQ controller
 clear
 clc
+close all
 
 % Import model
 [sys_aug, sys_eig] = PEMFC_FPS_Model;
