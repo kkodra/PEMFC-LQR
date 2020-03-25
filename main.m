@@ -58,6 +58,9 @@ elseif rank(fast_cont) < rank(fast_sys.Af)
 	error('Controllability matrix of the fast subsystem is singular.');
 end
 
+% Define requirements for each state. Goal is to improve response.
+% For each state state design requirements: 
+% TODO: Research PEMFC design
 
 % Define time and input functions
 t = 0:0.01:10;
