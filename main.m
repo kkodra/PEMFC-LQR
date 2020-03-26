@@ -24,6 +24,7 @@ C_schur_ord = ordSys.C;
 % TODO: Maybe a loop to get N different time-scales that the system has
 % See algorithm in paper
 % COMPLETE THIS!
+% No need to put a loop here?
 
 num_TS = 3;
 for i = 1:num_TS-1
