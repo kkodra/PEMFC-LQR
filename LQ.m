@@ -1,4 +1,5 @@
 % LQ Energies
+
 set(0,'DefaultTextFontName','Times',...
 'DefaultTextFontSize',18,...
 'DefaultAxesFontName','Times',...
@@ -29,11 +30,7 @@ A_FB = A - BK_opt;
 
 sys = ss(A_FB,B_blow,C,0);
 
-[Y,~,X] = lsim(sys,u,t);
-
-% figure
-% plot(t,X(:,3)); hold on
-% 
+[Y,~,X] = lsim(sys,u,t); 
 
 %% Slowest subsystem
 A_1 = A(1:9,1:9);
