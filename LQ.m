@@ -18,7 +18,7 @@ B_valve = B(:,2);
 
 % Select B
 t = 0:0.01:10;
-u = ones(1,length(t));
+u = 7*ones(1,length(t));
 
 % Full system
 Q = eye(size(A));
@@ -61,6 +61,8 @@ ylabel('Amplitude')
 
 
 %% 2nd subsystem
+t = 0:0.01:0.5;
+u = 0.2*ones(1,length(t));
 A_2 = A(10:15,10:15);
 B_2 = B(10:15,:);
 C_2 = C(:,10:15);
