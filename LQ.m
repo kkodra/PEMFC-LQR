@@ -10,7 +10,7 @@ A = A_schur_ord7;
 B = T_schur_ord7*B_aug;
 C = C_aug*inv(T_schur_ord7);
 
-R = 1;
+% Weights are predetermined. Add them here.
 
 % Input due to blower
 B_blow = B(:,1);
