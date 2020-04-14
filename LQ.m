@@ -1,10 +1,8 @@
 % LQ Energies
-set(0,'DefaultTextFontName','Times',...
-'DefaultTextFontSize',18,...
-'DefaultAxesFontName','Times',...
-'DefaultAxesFontSize',18,...
-'DefaultLineLineWidth',2,...
-'DefaultLineMarkerSize',7.75)
+clear; clc
+set(0,'DefaultTextFontName','Times','DefaultTextFontSize',18,...
+'DefaultAxesFontName','Times','DefaultAxesFontSize',18,...
+'DefaultLineLineWidth',2,'DefaultLineMarkerSize',7.75)
 
 % Get augmented model
 [augSys,eig_Aug,epsilon,TS_size] = PEMFC_FPS_Model;
@@ -20,105 +18,60 @@ C = ordSys.C;
 B_blow = B(:,1);
 B_valve = B(:,2);
 
-% Select B
-t = 0:0.01:15;
-u = 1*ones(1,length(t));
+% Weights
+weights = cell(numel(TS_size),2);
+weights{1,1} = diag([3613,7417,7059,7009,62,3743,9015,3183,5971]);
+weights{2,1} = diag([8223940,251505,4144289,7314075,7813740,3672859]);
+weights{3,1} = diag([131830,123500,190903]);
+weights{1,2} = 298;
+weights{2,2} = 1;
+weights{3,2} = 15;
 
-%% Slowest subsystem
+% Run time and input
+t = cell(1,numel(TS_size)); u = cell(1,numel(TS_size));
+t{1} = 0:0.01:15;      u{1} = 1*ones(1,length(t{1}));
+t{2} = 0:0.001:0.2;    u{2} = 7*ones(1,length(t{2}));
+t{3} = 0:0.001:0.05;   u{3} = 0.5*ones(1,length(t{3}));
 
-load('Q1.mat')
-load('R1.mat')
-A_1 = A(1:9,1:9);
-B_1 = B(1:9,:);
-C_1 = [0 0 0 1 0 0 0 0 0]; %C(4,1:9);
-D_1 = zeros(1);
+% State to be plotted
+state_ind = [4 4 2];
 
-B_1_blow = B_1(:,1);
-B_1 = B_1_blow;
+% Y labels for the plots
+y_lab = {'Mass O_2 [kg]','Gas Pressure in SM [kPa]','Mass N_2 [kg]'};
 
-sys_ol = ss(A_1,B_1,C_1,0);
+for i = 1:3
+    if i == 1
+        ind_start = 1;
+    end
+    
+    ind_end = ind_start+TS_size(i)-1;
+    A_1 = A(ind_start:ind_end,ind_start:ind_end);   % DO NOT START AT 1 EVERY ITERATION!
+    B_1 = B(ind_start:ind_end,:);
+    C_1 = zeros(1,TS_size(i)); C_1(state_ind(i)) = 1; 
+    D_1 = 0;
+    
+    B_1_valve = B_1(:,2);
+    B_1 = B_1_valve;
+    
+    sys_ol = ss(A_1,B_1,C_1,D_1);
 
-[P,~,~] = care(A_1,B_1,Q1,R1);
-K_opt = inv(R1)*B_1'*P;  
+    [P,~,~] = care(A_1,B_1,weights{i,1},weights{i,2});
+    K_opt = inv(weights{i,2})*B_1'*P;  
 
-Nbar = rscale(sys_ol,K_opt);
-B_1_K_opt = B_1*K_opt;
+    Nbar = rscale(sys_ol,K_opt);
+    B_1_K_opt = B_1*K_opt;
 
-A_1_FB = A_1 - B_1_K_opt;
+    A_1_FB = A_1 - B_1_K_opt;
 
-sys = ss(A_1_FB,B_1,C_1,D_1);
+    sys = ss(A_1_FB,B_1,C_1,D_1);
 
-[~,~,X_cl] = lsim(sys,Nbar*u,t);
+    [~,~,X_cl] = lsim(sys,Nbar*u{i},t{i});
+    
+    figure(i)
+    plot(t{i},X_cl(:,state_ind(i))); hold on
+    xlabel('Time (s)');grid on
+    ylabel(y_lab{i})
+    
+    ind_start = sum(TS_size(1:i)) + 1;
 
-figure(1)
-plot(t,X_cl(:,4)); hold on% mass of oxygen
-xlabel('Time (s)');grid on
-ylabel('Mass O_2 [kg]')
-
-
-%% 2nd subsystem
-% 
-load('Q2.mat')
-load('R2.mat')
-
-t = 0:0.001:0.2;
-u = 7*ones(1,length(t));
-
-A_2 = A(10:15,10:15);
-B_2 = B(10:15,:);
-C_2 =[0 0 0 1 0 0]; % C(:,10:15);
-
-B_2_blow = B_2(:,1);
-B_2_valve = B_2(:,2);
-B_2 = B_2_valve;
-
-sys_ol = ss(A_2,B_2,C_2,0);
-
-[P,~,~] = care(A_2,B_2,Q2,R2);
-K_opt = inv(R2)*B_2'*P;
-B_2_K_opt = B_2*K_opt;
-
-Nbar = rscale(sys_ol,K_opt);
-
-A_2_FB = A_2 - B_2_K_opt;
-
-sys = ss(A_2_FB,B_2,C_2,0);
-
-[~,~,X] = lsim(sys,Nbar*u,t);
-
-figure(2)
-plot(t,X(:,4)); hold on% pressure gas supply manifold
-xlabel('Time (s)');grid on
-ylabel('Gas Pressure in SM [kPa]')
-
-%% Fastest subsystem
-t = 0:0.001:0.05;
-u = 0.5*ones(1,length(t));
-A_3 = A(16:end,16:end);
-B_3 = B(16:end,:);
-C_3 = [0 1 0]; %C(:,16:end);
-% 
-B_3_blow = B_3(:,1);
-B_3 = B_3_blow;
-
-load('Q3.mat')
-load('R3.mat')
-
-sys_ol = ss(A_3,B_3,C_3,0);
-
-[P,Lcare,G] = care(A_3,B_3,Q3,R3);
-K_opt = inv(R3)*B_3'*P;
-B_3_K_opt = B_3*K_opt;
-
-Nbar = rscale(sys_ol,K_opt);
-A_3_FB = A_3 - B_3_K_opt;
-
-sys = ss(A_3_FB,B_3,C_3,0);
-
-[~,~,X] = lsim(sys,Nbar*u,t);
-
-figure(3)
-plot(t,X(:,2)); hold on% mass of nitrogen
-xlabel('Time (s)');grid on
-ylabel('Mass N_2 [kg]')
-
+end
