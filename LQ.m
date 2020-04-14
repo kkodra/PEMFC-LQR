@@ -21,7 +21,7 @@ B_valve = B(:,2);
 % Select input
 blow = false;
 
-% Weights
+% Weights (design)
 weights = cell(numel(TS_size),2);
 weights{1,1} = diag([3613,7417,7059,7009,62,3743,9015,3183,5971]);
 weights{2,1} = diag([8223940,251505,4144289,7314075,7813740,3672859]);
@@ -70,7 +70,7 @@ for i = 1:3
     A_1_FB = A_1 - B_1_K_opt;
 
     sys = ss(A_1_FB,B_1,C_1,D_1);
-
+    % Add Nbar function
     [~,~,X_cl] = lsim(sys,Nbar*u{i},t{i});
     
     figure(i)
