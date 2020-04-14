@@ -18,6 +18,9 @@ C = ordSys.C;
 B_blow = B(:,1);
 B_valve = B(:,2);
 
+% Select input
+blow = false;
+
 % Weights
 weights = cell(numel(TS_size),2);
 weights{1,1} = diag([3613,7417,7059,7009,62,3743,9015,3183,5971]);
@@ -50,8 +53,11 @@ for i = 1:3
     C_1 = zeros(1,TS_size(i)); C_1(state_ind(i)) = 1; 
     D_1 = 0;
     
-    B_1_valve = B_1(:,2);
-    B_1 = B_1_valve;
+    if blow    
+        B_1 = B_1(:,1);
+    else
+        B_1 = B_1(:,2);
+    end
     
     sys_ol = ss(A_1,B_1,C_1,D_1);
 
