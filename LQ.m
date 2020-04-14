@@ -14,7 +14,7 @@ A = ordSys.A;
 B = ordSys.B;
 C = ordSys.C;
 
-% Input due to blower
+% Input due to blower and valve
 B_blow = B(:,1);
 B_valve = B(:,2);
 
