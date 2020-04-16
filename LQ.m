@@ -1,5 +1,5 @@
-% LQ Energies
-clear; clc
+function LQ()
+
 set(0,'DefaultTextFontName','Times','DefaultTextFontSize',18,...
 'DefaultAxesFontName','Times','DefaultAxesFontSize',18,...
 'DefaultLineLineWidth',2,'DefaultLineMarkerSize',7.75)
