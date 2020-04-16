@@ -21,11 +21,7 @@ A_schur_ord = ordSys.A;
 B_schur_ord = ordSys.B;
 C_schur_ord = ordSys.C;
 
-% TODO: Maybe a loop to get N different time-scales that the system has
-% See algorithm in paper
-% COMPLETE THIS!
-% No need to put a loop here?
-
+% TODO: Change accordingly
 num_TS = 3;
 for i = 1:num_TS-1
 	[slow_sys, fast_sys, LH_test, L, H] = decouple_sys(A_schur_ord,B_schur_ord,C_schur_ord,dim,epsilon)
@@ -67,6 +63,7 @@ end
 t = 0:0.01:10;
 r = ones(size(t));
 
+% LQ instead here
 % LQR controller for overall augmented system
 Q_aug = sys_aug.C'*sys_aug.C;
 R_aug = 1;
