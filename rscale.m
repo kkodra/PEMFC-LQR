@@ -12,4 +12,4 @@ Z = [zeros([1,s]) 1];
 N = ([A,B;C,D])\Z';
 Nx = N(1:s);
 Nu = N(1+s);
-Nbar=Nu + K*Nx;
+Nbar = Nu + K*Nx;
