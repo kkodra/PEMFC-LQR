@@ -22,7 +22,7 @@ B_valve = B(:,2);
 % Select input
 blow = false;
 
-% Weights (design)
+% Weights design using parametric studies.
 weights = cell(numel(TS_size),2);
 weights{1,1} = diag([3613,7417,7059,7009,62,3743,9015,3183,5971]);
 weights{2,1} = diag([8223940,251505,4144289,7314075,7813740,3672859]);
