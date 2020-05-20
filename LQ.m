@@ -1,5 +1,6 @@
 function LQ()
 % LQ control for three separate time-scales
+% Function takes no inputs.
 
 set(0,'DefaultTextFontName','Times','DefaultTextFontSize',18,...
 'DefaultAxesFontName','Times','DefaultAxesFontSize',18,...
@@ -80,5 +81,4 @@ for i = 1:3
     ylabel(y_lab{i})
     
     ind_start = sum(TS_size(1:i)) + 1;
-
 end
