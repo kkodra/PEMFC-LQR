@@ -2,6 +2,8 @@ function LQ()
 % LQ control for three separate time-scales
 % Function takes no inputs.
 
+% Add coordinate change: TschurTch1Tch2
+
 set(0,'DefaultTextFontName','Times','DefaultTextFontSize',18,...
 'DefaultAxesFontName','Times','DefaultAxesFontSize',18,...
 'DefaultLineLineWidth',2,'DefaultLineMarkerSize',7.75)
